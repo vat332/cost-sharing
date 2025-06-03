@@ -1,8 +1,17 @@
-import initialFriends from "../data/initialFriends";
 import Friend from "./Friend";
 
-const FriendsList = () => {
-  const friends = initialFriends;
+type FriendType = {
+  id: string | number;
+  name: string;
+  image: string;
+  balance: number | string;
+};
+
+interface FriendsListProps {
+  friends: FriendType[];
+}
+
+const FriendsList: React.FC<FriendsListProps> = ({ friends }) => {
   return (
     <ul>
       {friends.map((friend) => (
