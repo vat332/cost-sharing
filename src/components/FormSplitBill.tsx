@@ -14,8 +14,8 @@ const FormSplitBill = () => {
       <label htmlFor="">X część</label>
       <input type="text" title="X część" disabled />
 
-      <label htmlFor="">Kto płaci rachunek</label>
-      <select name="" id="">
+      <label htmlFor="payer-select">Kto płaci rachunek</label>
+      <select name="payer" id="payer-select">
         <option value="user">Ty</option>
         <option value="friend">X</option>
       </select>
