@@ -6,7 +6,13 @@ const FriendsList = () => {
   return (
     <ul>
       {friends.map((friend) => (
-        <Friend friend={friend} key={friend.id} />
+        <Friend
+          friend={{
+            ...friend,
+            balance: Number(friend.balance),
+          }}
+          key={friend.id}
+        />
       ))}
     </ul>
   );
