@@ -1,3 +1,5 @@
+import Button from "./Button";
+
 interface FriendProps {
   friend: {
     image: string;
@@ -22,6 +24,7 @@ const Friend = ({ friend }: FriendProps) => {
         </p>
       )}
       {friend.balance === 0 && <p>Nie masz długu wobec {friend.name}</p>}
+      <Button>Wybierz</Button>
     </li>
   );
 };

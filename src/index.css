@@ -112,7 +112,6 @@ form {
   display: grid;
   align-items: center;
   gap: 1.2rem;
-
   background-color: var(--color-lightest);
   border-radius: 7px;
 }
@@ -129,12 +128,6 @@ form {
 
 label {
   font-weight: 500;
-}
-
-label::first-letter {
-  display: inline-block;
-  margin-right: 4px;
-  font-size: 1.8rem;
 }
 
 input,
