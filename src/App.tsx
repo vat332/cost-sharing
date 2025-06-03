@@ -1,5 +1,13 @@
+import FriendsList from "./components/FriendsList";
+
 const App = () => {
-  return <div>App</div>;
+  return (
+    <main className="app">
+      <div className="sidebar">
+        <FriendsList />
+      </div>
+    </main>
+  );
 };
 
 export default App;
