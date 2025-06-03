@@ -1,58 +1,60 @@
 import { useState } from "react";
 import Button from "./Button";
 
-type Friend = {
+interface Friend {
   name: string;
   image: string;
   balance: number;
   id: string;
-};
+}
 
 interface FormAddFriendProps {
   onAddFriend: (friend: Friend) => void;
 }
 
-const FormAddFriend = ({ onAddFriend }: FormAddFriendProps) => {
+const FormAddFriend: React.FC<FormAddFriendProps> = ({ onAddFriend }) => {
   const [name, setName] = useState("");
-  const [image, setImage] = useState(
-    "https://randomuser.me/api/portraits/men/33.jpg"
-  );
+  const [image, setImage] = useState("https://i.pravatar.cc/48");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>): void {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name || !image) return;
+
     const id = crypto.randomUUID();
-    const newFriend = {
+    const newFriend: Friend = {
       name,
-      image: `${image}?=${id}`,
+      image: `${image}?u=${id}`,
       balance: 0,
-      id: id,
+      id,
     };
+
     onAddFriend(newFriend);
+
     setName("");
-    setImage("https://randomuser.me/api/portraits/men/33.jpg");
-  }
+    setImage("https://i.pravatar.cc/48");
+  };
+
   return (
     <form className="form-add-friend" onSubmit={handleSubmit}>
-      <label htmlFor="">Imie znajomego</label>
+      <label> 👩🏽‍🤝‍🧑🏿 Nazwa znajomego</label>
       <input
         type="text"
-        placeholder="Wpisz imię znajomego"
-        title="Imię znajomego"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        placeholder="Wprowadź imię znajomego"
+        title="Friend Name"
       />
-      <label htmlFor="">URL do zdjęcia</label>
+
+      <label>🌆 Link do zdjecia</label>
       <input
         type="text"
-        placeholder="url do zdjęcia"
-        title="Zdjęcie"
         value={image}
         onChange={(e) => setImage(e.target.value)}
+        placeholder="Wprowadz URL zdjecia"
       />
+
       <Button>Dodaj</Button>
     </form>
   );
 };
-
 export default FormAddFriend;

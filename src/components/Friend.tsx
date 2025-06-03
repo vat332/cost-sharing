@@ -1,16 +1,24 @@
 import Button from "./Button";
 
-interface FriendProps {
-  friend: {
-    image: string;
-    name: string;
-    balance: number;
-  };
+interface FriendType {
+  id: number;
+  image: string;
+  name: string;
+  balance: number;
 }
 
-const Friend = ({ friend }: FriendProps) => {
+interface FriendProps {
+  friend: FriendType;
+  onSelection: (friend: FriendType) => void;
+  selectedFriends: FriendType | null;
+}
+
+const Friend = ({ friend, onSelection, selectedFriends }: FriendProps) => {
+  const isSelected =
+    selectedFriends !== null && selectedFriends?.id === friend.id;
+
   return (
-    <li>
+    <li className={isSelected ? "selected" : ""}>
       <img src={friend.image} alt={friend.name} />
       <h3>{friend.name}</h3>
       {friend.balance < 0 && (
@@ -24,7 +32,8 @@ const Friend = ({ friend }: FriendProps) => {
         </p>
       )}
       {friend.balance === 0 && <p>Nie masz długu wobec {friend.name}</p>}
-      <Button>Wybierz</Button>
+
+      <Button onClick={() => onSelection(friend)}>Wybierz</Button>
     </li>
   );
 };
